@@ -1,3 +1,4 @@
+import yfinance as yf
 from StockIntelligence.stock_data_abstract import StockDataStructure
 
 
