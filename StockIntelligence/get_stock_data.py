@@ -1,8 +1,8 @@
-from StockIntelligence.stock_data_abstract import StockDataClass
+from StockIntelligence.stock_data_abstract import StockDataStructure
 
 
 #Define class for getting and displaying stock data
-class GetStockData(StockDataClass):
+class GetStockData(StockDataStructure):
     
     def __init__(self, name, load_period):
         self.name = name
