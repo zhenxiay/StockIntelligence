@@ -14,7 +14,7 @@ class LoadStockData(GetStockData):
         return client, job_config
 
     def load_stock_data_to_big_query(self,table_name):
-        dataset = GetStockData(self.name).read_daily_data(self.load_period)
+        dataset = GetStockData(self.name, self.load_period).read_daily_data()
         table_id = f'{self.project}.{self.dataset}.{table_name}'
         client, job_config = self.create_big_query_client()
         client.load_table_from_dataframe(dataset, table_id, job_config=job_config)
