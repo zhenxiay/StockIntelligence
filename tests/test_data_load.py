@@ -9,7 +9,3 @@ def test_read_team_adv_stats():
 #def test_column_dtype_is_float(column):
 #    dataset = GetStockData('MSFT', '1d')
 #    assert dataset[column].dtype == 'float64', f"Column {column} is not of type float64"
-
-def test_column_dtype_is_float(column='Close'):
-    dataset = GetStockData('MSFT', '1d')
-    assert dataset[column].dtype == 'float64', f"Column {column} is not of type float64"
