@@ -8,6 +8,7 @@ setup(
         'pandas',
         'yfinance',
         'google',
+        'ta',
         'lxml'
     ],
     author="zhenxiay",
