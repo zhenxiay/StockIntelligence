@@ -3,7 +3,7 @@ from StockIntelligence.get_stock_data import GetStockData
 def test_read_team_adv_stats():
     dataset = GetStockData('MSFT', '3mo')
     columns_count = len(dataset.read_daily_data().columns)
-    assert columns_count == 14
+    assert columns_count == 15
 
 #@pytest.mark.parametrize("column", ['Close', 'Volume', 'rsi'])
 #def test_column_dtype_is_float(column):
