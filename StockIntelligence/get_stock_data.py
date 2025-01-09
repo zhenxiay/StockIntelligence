@@ -1,6 +1,6 @@
 import yfinance as yf
 from StockIntelligence.stock_data_abstract import StockDataStructure
-
+from StockIntelligence.tecnical_analysis import calc_rsi
 
 #Define class for getting and displaying stock data
 class GetStockData(StockDataStructure):
@@ -45,6 +45,7 @@ class GetStockData(StockDataStructure):
                      .pipe(convert_multi_index, Ticker = self.name)
                      .pipe(calc_pct_delta)
                      .pipe(calc_moving_avg)
+                     .pipe(calc_rsi, rsi_window = self.rsi_window)
                     )
         
         return df_output        
