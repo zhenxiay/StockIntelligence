@@ -3,7 +3,7 @@ from StockIntelligence.get_stock_data import GetStockData
 
 class LoadStockData(GetStockData):
     def __init__(self, name, load_period, project, dataset):
-        super().__init__(name, load_period)
+        super().__init__(name=name, load_period=load_period)
         self.project = project
         self.dataset = dataset
 
