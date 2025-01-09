@@ -1,6 +1,6 @@
 import yfinance as yf
 from StockIntelligence.stock_data_abstract import StockDataStructure
-from StockIntelligence.tecnical_analysis import calc_rsi
+from StockIntelligence.technical_analysis import calc_rsi
 
 #Define class for getting and displaying stock data
 class GetStockData(StockDataStructure):
