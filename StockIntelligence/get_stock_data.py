@@ -10,6 +10,7 @@ class GetStockData(StockDataStructure):
         # availiable periods: ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max']
         self.load_period = load_period
         self.analysis_periods = [7, 14, 30]
+        self.rsi_window = [14, 21]
           
     def read_daily_data(self):
         
