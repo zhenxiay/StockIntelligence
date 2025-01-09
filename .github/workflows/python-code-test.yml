@@ -34,7 +34,6 @@ jobs:
         yapf -i --style '{use_tabs: False}' ./StockIntelligence/get_stock_data.py
         yapf -i --style '{use_tabs: False}' ./StockIntelligence/load_stock_data.py
         yapf -i ./setup.py
-        yapf -i --style '{use_tabs=False}' ./tests/test_data_load.py
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
