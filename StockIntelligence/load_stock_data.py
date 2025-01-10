@@ -33,4 +33,4 @@ class LoadStockData(GetStockData):
         # use job config for append data load in big query
         client, job_config = self.create_big_query_client_append()
         client.load_table_from_dataframe(dataset, table_id, job_config=job_config)
-        print(f'Data load to big query {table_id} successfully!')
+        print(f'Data load to big query {table_id} successfully! Number of loaded rows: {len(dataset)}...')
