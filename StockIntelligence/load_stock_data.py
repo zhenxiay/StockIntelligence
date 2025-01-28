@@ -33,6 +33,7 @@ class LoadStockData(GetStockData):
         client.load_table_from_dataframe(dataset, table_id, job_config=job_config)
         print(f'Data load to big query {table_id} successfully! Number of loaded rows: {len(dataset)}...')
     
+    ############ Methods of loading single ticker into a dedicated table ######################
     def load_stock_data_to_big_query(self,table_name):
         dataset = GetStockData(self.name, self.load_period).read_daily_data()
         self.data_ingestion_big_query_client_full_load(table_name)
@@ -42,4 +43,4 @@ class LoadStockData(GetStockData):
         dataset = GetStockData(self.name, self.load_period).read_daily_data().tail(1)
         # use append method to do incremental load in big query
         self.data_ingestion_big_query_client_append(table_name)
-
+        
