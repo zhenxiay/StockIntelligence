@@ -18,15 +18,13 @@ class LoadStockData(GetStockData):
         client = bigquery.Client()
         job_config = bigquery.LoadJobConfig(write_disposition="WRITE_APPEND")
         return client, job_config
-
-    @staticmethod
+        
     def data_ingestion_big_query_client_full_load(self,dataset,table_name) -> None:
         table_id = f'{self.project}.{self.dataset_name}.{table_name}'
         client, job_config = self.create_big_query_client_full_load()
         client.load_table_from_dataframe(dataset, table_id, job_config=job_config)
         print(f'Data load to big query {table_id} successfully!')        
 
-    @staticmethod
     def data_ingestion_big_query_client_append(self,dataset,table_name) -> None:
         table_id = f'{self.project}.{self.dataset_name}.{table_name}'
         client, job_config = self.create_big_query_client_append()
