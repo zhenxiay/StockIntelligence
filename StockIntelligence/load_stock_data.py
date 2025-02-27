@@ -1,6 +1,6 @@
 from google.cloud import bigquery
 from StockIntelligence.get_stock_data import GetStockData
-from StockIntelligence.da_utility import big_query_setup
+from StockIntelligence.db_utility import big_query_setup
 
 class LoadStockData():
     def __init__(self, name, load_period, project, dataset):
