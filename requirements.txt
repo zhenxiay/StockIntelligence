@@ -1,5 +1,7 @@
 yfinance==0.2.54
 pandas
 google
+google-cloud
+google-cloud-bigquery
 lxml
 ta
