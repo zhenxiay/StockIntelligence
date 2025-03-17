@@ -10,7 +10,7 @@ class LoadMultiStockData():
         self.project = project
         self.dataset = dataset
 
-    def create_combinded_dataset(self, stock_list):
+    def create_combined_dataset(self, stock_list):
         combined_df = pd.DataFrame()
       
         for stock in self.stock_list:
@@ -22,7 +22,7 @@ class LoadMultiStockData():
 
     def load_multi_stock_data_to_big_query(self, stock_list, table_name):
 
-        dataset = self.create_combinded_dataset(self, stock_list)
+        dataset = self.create_combined_dataset(self, stock_list)
           
         table_id = f'{self.project}.{self.dataset}.{table_name}'
         client, job_config = create_big_query_client_full_load()
