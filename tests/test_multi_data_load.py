@@ -10,6 +10,6 @@ def test_load_multi_stock_data():
                                  "bq_dataset_dummy",
                                  "StockIntelligence")
 
-    dataset = load_object.reate_combinded_dataset(stock_list)
+    dataset = load_object.create_combinded_dataset(stock_list)
     distinct_count = dataset['Ticker'].nunique()
     assert distinct_count == len(stock_list)
