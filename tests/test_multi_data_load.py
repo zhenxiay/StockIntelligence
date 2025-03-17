@@ -11,4 +11,5 @@ def test_load_multi_stock_data():
                                  "StockIntelligence")
 
     dataset = load_object.reate_combinded_dataset(self, stock_list)
-    assert dataset.name == 'MSFT'
+    distinct_count = dataset['Ticker'].nunique()
+    assert distinct_count == len(stock_list)
