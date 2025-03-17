@@ -15,10 +15,10 @@ class LoadMultiStockData():
       
         for stock in self.stock_list:
             temp_df = GetStockData(stock, self.load_period).read_daily_data()
-            dataset = pd.concat([combined_df, temp_df])
-            dataset.reset_index(inplace=True)
+            combined_df = pd.concat([combined_df, temp_df])
+            combined_df.reset_index(inplace=True)
           
-        return dataset
+        return combined_df
 
     def load_multi_stock_data_to_big_query(self, stock_list, table_name):
 
