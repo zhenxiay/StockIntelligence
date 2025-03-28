@@ -6,8 +6,10 @@ setup(
     packages=find_packages(),
     install_requires=[
         'pandas',
-        'yfinance',
+        'yfinance==0.2.54',
         'google',
+        'google-cloud',
+        'google-cloud-bigquery',
         'ta',
         'lxml'
     ],
