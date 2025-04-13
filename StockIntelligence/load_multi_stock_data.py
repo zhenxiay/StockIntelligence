@@ -22,7 +22,7 @@ class LoadMultiStockData():
 
     def load_multi_stock_data_to_big_query(self, stock_list, table_name):
 
-        dataset = self.create_combined_dataset(self, stock_list)
+        dataset = self.create_combined_dataset(stock_list)
           
         table_id = f'{self.project}.{self.dataset}.{table_name}'
         client, job_config = create_big_query_client_full_load()
