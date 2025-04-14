@@ -40,7 +40,7 @@ class LoadMultiStockData():
         dataset = self.create_combined_dataset().drop('level_0', axis=1)
         conn = sqlite3.connect(f'{db_path}/{db_name}')
         
-        data.to_sql(
+        dataset.to_sql(
                      table_name,
                      con=conn,
                      if_exists="replace"
