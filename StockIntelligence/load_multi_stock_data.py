@@ -29,6 +29,8 @@ class LoadMultiStockData():
         return combined_df
 
     def load_multi_stock_data_to_big_query(self, table_name):
+
+        dataset = create_combined_dataset()
           
         table_id = f'{self.project}.{self.dataset}.{table_name}'
         client, job_config = create_big_query_client_full_load()
@@ -41,6 +43,8 @@ class LoadMultiStockData():
     def load_multi_stock_data_to_sqlite3(self, db_path, db_name, table_name):
         
         conn = sqlite3.connect(f'{db_path}/{db_name}')
+        
+        dataset = create_combined_dataset()
         
         dataset.to_sql(
                      table_name,
