@@ -2,10 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='StockIntelligence',
-    version='0.1.1',
+    version='0.1.2',
     packages=find_packages(),
     install_requires=[
         'pandas',
+        'numpy<2',
         'yfinance==0.2.54',
         'google',
         'google-cloud',
