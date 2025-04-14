@@ -6,6 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'pandas',
+        'pyarrow',
         'numpy<2',
         'yfinance==0.2.54',
         'google',

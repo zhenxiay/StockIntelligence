@@ -12,19 +12,25 @@ class LoadMultiStockData():
         self.project = project
         self.dataset = dataset
 
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        self.logger.info(f"Logger initialized")
+
     def create_combined_dataset(self):
         combined_df = pd.DataFrame()
       
         for stock in self.stock_list:
             temp_df = GetStockData(stock, self.load_period).read_daily_data()
             combined_df = pd.concat([combined_df, temp_df])
-            combined_df.reset_index(inplace=True)
-          
+            combined_df.reset_index(drop=True)
+
+        self.logger.info('Dataframe created for {self.stock_list} with {len(combined_df)} rows...')
+        
         return combined_df
 
     def load_multi_stock_data_to_big_query(self, table_name):
 
-        dataset = self.create_combined_dataset().drop('level_0', axis=1)
+        dataset = self.create_combined_dataset()
           
         table_id = f'{self.project}.{self.dataset}.{table_name}'
         client, job_config = create_big_query_client_full_load()
@@ -32,13 +38,13 @@ class LoadMultiStockData():
                                          table_id, 
                                          job_config=job_config)
         
-        logging.basicConfig(format='%(asctime)s %(message)s')
-        logging.info('Ingested rows: {len(dataset)} into {table_id}, table portfolio_analysis')
+        self.logger.info('Ingested rows: {len(dataset)} into {table_id}, table {table_name}')
 
     def load_multi_stock_data_to_sqlite3(self, db_path, db_name, table_name):
         
-        dataset = self.create_combined_dataset().drop('level_0', axis=1)
         conn = sqlite3.connect(f'{db_path}/{db_name}')
+        
+        dataset = self.create_combined_dataset()
         
         dataset.to_sql(
                      table_name,
@@ -46,6 +52,5 @@ class LoadMultiStockData():
                      if_exists="replace"
                     )
 
-        logging.basicConfig(format='%(asctime)s %(message)s')
-        logging.info('Ingested rows: {len(dataset)} into {db_path}/{db_name}, table {table_name}')
+        self.logger.info('Ingested rows: {len(dataset)} into {db_path}/{db_name}, table {table_name}')
         
