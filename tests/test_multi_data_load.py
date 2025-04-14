@@ -1,7 +1,8 @@
 from StockIntelligence.get_stock_data import GetStockData
 from StockIntelligence.load_multi_stock_data import LoadMultiStockData
+import logging
 
-stock_list = ['MSFT','ASML']
+stock_list = ['MSFT','NVDA','ASML']
 load_object = LoadMultiStockData(stock_list,
                                  "3mo",
                                  "bq_dataset_dummy",
@@ -15,6 +16,8 @@ def test_read_multi_stock_data():
     assert distinct_count == len(stock_list)
 
 def test_load_multi_stock_data():
-    load_object.load_multi_stock_data_to_sqlite3(db_path= '.',
-                                                 db_name= 'stock_db',
-                                                 table_name= 'test')
+    load_object.load_multi_stock_data_to_sqlite3(db_path='.',
+                                                 db_name='stock_db',
+                                                 table_name='test')
+  
+    logging.info(f'Data intestion method with sqlite3 passed with {stock_list}')
