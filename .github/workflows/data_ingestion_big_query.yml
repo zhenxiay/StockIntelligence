@@ -1,0 +1,36 @@
+
+# This workflow triggers a full load of selected stock data into a Google Big Query project
+name: data_ingestion_to_big_query
+
+on:
+  # workflow can only be triggered manually
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      project_name:
+        description: 'GCP project name to which the data is ingested '
+        default: 'GCP-Project'
+        required: true
+        type: string
+
+jobs:
+  data_ingestion:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: checkout branch
+      uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install lxml, pyarrow
+        pip install git+https://github.com/zhenxiay/StockIntelligence.git@test
+    - name: Run python script - data ingestion to BQ
+      run: |
+        python DataLoad/data_ingestion_multi_big_query.py
