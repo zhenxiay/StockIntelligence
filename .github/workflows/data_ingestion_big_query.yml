@@ -8,24 +8,29 @@ on:
     # Inputs the workflow accepts.
     inputs:
       project_name:
-        # Friendly description to be shown in the UI instead of 'name'
         description: 'GCP project name to which the data is ingested '
-        # Default value if no value is explicitly provided
         default: 'GCP-Project'
-        # Input has to be provided for the workflow to run
         required: true
-        # The data type of the input
         type: string
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
   data_ingestion:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.project_name }}"
+    - name: checkout branch
+      uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install lxml, pyarrow
+        pip install git+https://github.com/zhenxiay/StockIntelligence.git@test
+    - name: Run python script - data ingestion to BQ
+      run: |
+        python DataLoad/data_ingestion_multi_big_query.py
