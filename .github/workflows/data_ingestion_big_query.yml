@@ -1,0 +1,31 @@
+
+# This workflow triggers a full load of selected stock data into a Google Big Query project
+name: data_ingestion_to_big_query
+
+on:
+  # workflow can only be triggered manually
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      project_name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'GCP project name to which the data is ingested '
+        # Default value if no value is explicitly provided
+        default: 'GCP-Project'
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: string
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "greet"
+  data_ingestion:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: Send greeting
+      run: echo "Hello ${{ inputs.project_name }}"
