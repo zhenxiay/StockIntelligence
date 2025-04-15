@@ -27,4 +27,4 @@ load_object = LoadMultiStockData(stock_list,
                                  "StockIntelligence")
 
                                  
-load_object.load_multi_stock_data_to_big_query()
+load_object.load_multi_stock_data_to_big_query('Table_name')
