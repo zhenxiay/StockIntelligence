@@ -32,8 +32,9 @@ jobs:
         pip install lxml pyarrow
         pip install git+https://github.com/zhenxiay/StockIntelligence.git@test
     - name: GCP authentication
-      run: |
-        export GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.BIGQUERY_TOKEN }}
+      uses: 'google-github-actions/auth@v2'
+      with:
+        credentials_json: '${{ secrets.BIGQUERY_TOKEN }}'
     - name: Run python script - data ingestion to BQ
       run: |
         python DataLoad/data_ingestion_multi_big_query.py
