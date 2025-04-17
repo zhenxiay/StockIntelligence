@@ -14,6 +14,14 @@ class LoadMultiStockData():
 
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
+        # Add a StreamHandler to output logs to the console
+        if not self.logger.handlers:
+            console_handler = logging.StreamHandler()
+            console_handler.setLevel(logging.INFO)
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            console_handler.setFormatter(formatter)
+            self.logger.addHandler(console_handler)
+            
         self.logger.info(f"Logger initialized")
 
     def create_combined_dataset(self):
