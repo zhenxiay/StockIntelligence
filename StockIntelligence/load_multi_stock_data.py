@@ -32,7 +32,7 @@ class LoadMultiStockData():
             combined_df = pd.concat([combined_df, temp_df])
             combined_df.reset_index(drop=True)
 
-        self.logger.info('Dataframe created for {self.stock_list} with {len(combined_df)} rows...')
+        self.logger.info(f'Dataframe created for {self.stock_list} with {len(combined_df)} rows...')
         
         return combined_df
 
@@ -46,7 +46,7 @@ class LoadMultiStockData():
                                          table_id, 
                                          job_config=job_config)
         
-        self.logger.info('Ingested rows: {len(dataset)} into {table_id}, table {table_name}')
+        self.logger.info(f'Ingested rows: {len(dataset)} into {table_id}, table {table_name}')
 
     def load_multi_stock_data_to_sqlite3(self, db_path, db_name, table_name):
         
@@ -60,5 +60,5 @@ class LoadMultiStockData():
                      if_exists="replace"
                     )
 
-        self.logger.info('Ingested rows: {len(dataset)} into {db_path}/{db_name}, table {table_name}')
+        self.logger.info(f'Ingested rows: {len(dataset)} into {db_path}/{db_name}, table {table_name}')
         
