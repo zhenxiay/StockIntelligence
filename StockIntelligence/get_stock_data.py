@@ -15,8 +15,8 @@ class GetStockData(StockDataStructure):
           
     def read_daily_data(self):
         # session settings for yfinance to avoid rate limit error
-        session = requests.Session(impersonate="chrome")
-        ticker = yf.Ticker('...', session=session)
+        # session = requests.Session(impersonate="chrome")
+        # ticker = yf.Ticker('...', session=session)
         
         df_asset = yf.download(self.name, 
                                period = self.load_period)
