@@ -1,4 +1,5 @@
 import yfinance as yf
+from curl_cffi import requests
 from StockIntelligence.abstract.stock_data_abstract import StockDataStructure
 from StockIntelligence.technical_analysis import calc_rsi
 
@@ -13,6 +14,9 @@ class GetStockData(StockDataStructure):
         self.rsi_window = [14, 21]
           
     def read_daily_data(self):
+        # session settings for yfinance to avoid rate limit error
+        session = requests.Session(impersonate="chrome")
+        ticker = yf.Ticker('...', session=session)
         
         df_asset = yf.download(self.name, 
                                period = self.load_period)
