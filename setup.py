@@ -9,6 +9,7 @@ setup(
         'pyarrow',
         'numpy<2',
         'yfinance==0.2.54',
+        'curl_cffi',
         'google',
         'google-cloud',
         'google-cloud-bigquery',
