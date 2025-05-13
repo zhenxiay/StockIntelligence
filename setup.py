@@ -8,7 +8,7 @@ setup(
         'pandas',
         'pyarrow',
         'numpy<2',
-        'yfinance==0.2.54',
+        'yfinance==0.2.58',
         'curl_cffi',
         'google',
         'google-cloud',
