@@ -31,4 +31,6 @@ jobs:
 
     - name: Run tests with pytest
       # uv run allows you to execute commands within the environment managed by uv
-      run: uv run pytest tests/
+      run: |
+          uv add pytest
+          uv run pytest tests/
