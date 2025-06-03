@@ -1,6 +1,7 @@
 name: CI with uv and Pytest
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [ "main", "test" ]
 
