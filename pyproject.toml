@@ -1,0 +1,31 @@
+[project]
+name = "StockIntelligence"
+version = "0.1.2"
+authors = [
+  { name="zhenxiay", email="yu.zhenxiao.yz@gmail.com" },
+]
+description = "A short description of your project." # You might want to add a more descriptive text here.
+readme = "README.md" # Assuming you have a README.md file
+requires-python = ">=3.8" # You might want to adjust the Python version
+dependencies = [
+    "pandas",
+    "pyarrow",
+    "numpy<2",
+    "yfinance==0.2.58",
+    "curl_cffi",
+    "google",
+    "google-cloud",
+    "google-cloud-bigquery",
+    "ta",
+    "lxml",
+]
+
+[project.urls]
+Homepage = "https://github.com/zhenxiay/StockIntelligence"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages]
+find = {}

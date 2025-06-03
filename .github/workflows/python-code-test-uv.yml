@@ -1,0 +1,36 @@
+name: CI with uv and Pytest
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ "main", "test" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11"] # Test across different Python versions
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v1 # Use the official setup-uv action
+
+    - name: Set up Python ${{ matrix.python-version }}
+      # The setup-uv action can also set up Python for you, but using actions/setup-python
+      # is also common and allows for more fine-grained control if needed.
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install project dependencies with uv
+      run: uv sync --locked # Use uv sync to install dependencies from pyproject.toml
+
+    - name: Run tests with pytest
+      # uv run allows you to execute commands within the environment managed by uv
+      run: |
+          uv add pytest
+          uv run pytest tests/
