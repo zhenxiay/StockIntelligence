@@ -2,9 +2,7 @@ name: CI with uv and Pytest
 
 on:
   pull_request:
-    branches:
-      - main
-      - test
+    branches: [ "main", "test" ]
 
 jobs:
   build:
@@ -33,4 +31,4 @@ jobs:
 
     - name: Run tests with pytest
       # uv run allows you to execute commands within the environment managed by uv
-      run: uv run pytest
+      run: uv run pytest tests/
