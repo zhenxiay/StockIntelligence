@@ -20,7 +20,7 @@ You can install this libary either with pip or uv. Choose the option that best s
 
 ### Option 1: Install with pip install
 
-Install using FastMCP:
+Install using pip install:
 
 ```bash
 pip install https://github.com/zhenxiay/StockIntelligence.git
@@ -30,6 +30,7 @@ pip install https://github.com/zhenxiay/StockIntelligence.git
 
 #### Create a new directory for our project
 
+⚙️ To add this libary to an existing uv project, pls skip the first 2 steps
 
 ```bash
 uv init StockIntelligence
