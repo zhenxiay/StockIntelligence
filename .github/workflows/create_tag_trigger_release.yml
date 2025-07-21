@@ -1,0 +1,36 @@
+# This workflow creates a new tag in the repo, which triggers another workflow to prepare a release
+name: create tag for python library release
+
+on:
+  push:
+    tags: none
+  # workflow can only be triggered manually
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      tag:
+        description: 'Git Hub tag for the release '
+        default: 'v1.0.0'
+        required: true
+        type: string
+        
+permissions:
+  contents: write
+
+jobs:
+  create_tag:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Create Tag and trigger release pipeline
+      run: |
+        git config --global user.email "yu.zhenxiao.yz@gmail.com"
+        git config --global user.name "zhenxiay"
+        git tag '${{ inputs.tag }}'
+        git push origin --tags
+      env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
