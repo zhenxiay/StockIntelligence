@@ -1,10 +1,18 @@
+'''
+Define class for getting and displaying stock data
+'''
+
 import yfinance as yf
 from curl_cffi import requests
 from StockIntelligence.abstract.stock_data_abstract import StockDataStructure
 from StockIntelligence.technical_analysis import calc_rsi
 
-#Define class for getting and displaying stock data
 class GetStockData(StockDataStructure):
+'''
+Define class for getting stock data from Yahoo Finance using yfinance library.
+This class inherits from StockDataStructure and implements methods to read daily stock data, 
+calculate percentage changes, moving averages, and RSI (Relative Strength Index).
+'''    
     
     def __init__(self, name, load_period):
         self.name = name
@@ -14,35 +22,33 @@ class GetStockData(StockDataStructure):
         self.rsi_window = [14, 21]
           
     def read_daily_data(self):
-        # session settings for yfinance to avoid rate limit error
-        # session = requests.Session(impersonate="chrome")
-        # ticker = yf.Ticker('...', session=session)
-        
-        df_asset = yf.download(self.name, 
+        """Read daily stock data from Yahoo Finance using yfinance library."""
+
+        df_asset = yf.download(self.name,
                                period = self.load_period)
         
         def convert_multi_index(X, Ticker):
-            
+
             X = X.droplevel(1, axis=1)
             X = X.reset_index()
             X = X.rename_axis(None, axis=1)
             X['Ticker'] = Ticker
-            
+
             return X
-        
+
         def calc_pct_delta(X):
-            
+
             for period in self.analysis_periods:
                 X[f'pct_delta_{period}_day'] = X['Close']\
                                                .pct_change(period)
             return X
         
         def calc_moving_avg(X):
-            
+
             for period in self.analysis_periods:
                 X[f'mavg_{period}_day'] = X['Close']\
                                           .rolling(window=period).mean()
-                
+
             return X
         
         df_output = (df_asset
@@ -52,4 +58,4 @@ class GetStockData(StockDataStructure):
                      .pipe(calc_rsi, rsi_window = self.rsi_window)
                     )
         
-        return df_output        
+        return df_output
