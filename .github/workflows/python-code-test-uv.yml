@@ -29,6 +29,10 @@ jobs:
     - name: Install project dependencies with uv
       run: uv sync # Use uv sync to install dependencies from pyproject.toml
 
+    - name: Add lint/test tools with uv
+      run: |
+        uv add pylint pytest
+
     - name: Lint with pylint and export restults to html
       run: |
         uv run pylint StockIntelligence/ --fail-under 5.0 --score=y --output-format=parseable
@@ -36,5 +40,4 @@ jobs:
     - name: Run tests with pytest
       # uv run allows you to execute commands within the environment managed by uv
       run: |
-          uv add pytest
           uv run pytest tests/
