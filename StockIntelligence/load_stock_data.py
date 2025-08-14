@@ -8,9 +8,9 @@ from StockIntelligence.db_utility.big_query_setup import create_big_query_client
 from StockIntelligence.db_utility.logger import log_function
 
 class LoadStockData():
-'''
-Create a loader with single stock data.
-'''
+    '''
+    Create a loader with single stock data.
+    '''
     def __init__(self, name, load_period, project, dataset):
         self.name = name
         self.load_period = load_period
