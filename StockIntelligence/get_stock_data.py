@@ -26,12 +26,12 @@ class GetStockData(StockDataStructure):
         df_asset = yf.download(self.name,
                                period = self.load_period)
 
-        def convert_multi_index(X, ticker):
+        def convert_multi_index(X, Ticker):
 
             X = X.droplevel(1, axis=1)
             X = X.reset_index()
             X = X.rename_axis(None, axis=1)
-            X['Ticker'] = ticker
+            X['Ticker'] = Ticker
 
             return X
 
@@ -50,7 +50,8 @@ class GetStockData(StockDataStructure):
 
             return X
 
-        df_output = (df_asset
+        df_output = (
+                    df_asset
                      .pipe(convert_multi_index, Ticker = self.name)
                      .pipe(calc_pct_delta)
                      .pipe(calc_moving_avg)
