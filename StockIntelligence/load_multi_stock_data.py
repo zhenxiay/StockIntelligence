@@ -23,9 +23,9 @@ This class is used to load multiple stock data into BigQuery or SQLite3.
 
     @log_function
     def create_combined_dataset(self, logger):
-    '''
-    Crete a combined dataset from multiple stock data.
-    '''
+        '''
+        Crete a combined dataset from multiple stock data.
+        '''
         combined_df = pd.DataFrame()
 
         for stock in self.stock_list:
