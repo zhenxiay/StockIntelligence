@@ -20,19 +20,19 @@ class GetStockData(StockDataStructure):
         self.load_period = load_period
         self.analysis_periods = [7, 14, 30]
         self.rsi_window = [14, 21]
-          
+
     def read_daily_data(self):
         """Read daily stock data from Yahoo Finance using yfinance library."""
 
         df_asset = yf.download(self.name,
                                period = self.load_period)
-        
-        def convert_multi_index(X, Ticker):
+
+        def convert_multi_index(X, ticker):
 
             X = X.droplevel(1, axis=1)
             X = X.reset_index()
             X = X.rename_axis(None, axis=1)
-            X['Ticker'] = Ticker
+            X['Ticker'] = ticker
 
             return X
 
@@ -42,7 +42,7 @@ class GetStockData(StockDataStructure):
                 X[f'pct_delta_{period}_day'] = X['Close']\
                                                .pct_change(period)
             return X
-        
+
         def calc_moving_avg(X):
 
             for period in self.analysis_periods:
@@ -50,12 +50,12 @@ class GetStockData(StockDataStructure):
                                           .rolling(window=period).mean()
 
             return X
-        
+
         df_output = (df_asset
                      .pipe(convert_multi_index, Ticker = self.name)
                      .pipe(calc_pct_delta)
                      .pipe(calc_moving_avg)
                      .pipe(calc_rsi, rsi_window = self.rsi_window)
                     )
-        
+
         return df_output
