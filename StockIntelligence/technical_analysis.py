@@ -15,7 +15,7 @@ def calc_rsi(df_input, rsi_window):
     rsi_window (list): List of integers representing the RSI calculation windows.
     '''
     for window in rsi_window:
-        df_input[f'rsi_{window}'] = rsi(close= X["Close"],
+        df_input[f'rsi_{window}'] = rsi(close= df_input["Close"],
                                  window= window,
                                  fillna= False)
     return df_input
