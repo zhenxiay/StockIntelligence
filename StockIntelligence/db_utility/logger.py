@@ -32,7 +32,7 @@ def log_function(func):
     def wrapper(*args, **kwargs):
         logger.info(f"Logger initialized: {func.__name__}")
         try:
-            result = func(logger, *args, **kwargs)
+            result = func(*args, logger,**kwargs)
             logger.info(f"Exiting: {func.__name__}")
             return result
         except Exception as e:

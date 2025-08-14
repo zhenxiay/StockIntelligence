@@ -1,2 +1,5 @@
 .venv/
 StockIntelligence.egg-info/
+uv.lock
+.pyc
+__pycache__/
