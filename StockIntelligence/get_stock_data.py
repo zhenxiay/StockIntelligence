@@ -12,11 +12,10 @@ class GetStockData(StockDataStructure):
     Define class for getting stock data from Yahoo Finance using yfinance library.
     This class inherits from StockDataStructure and implements methods to read daily stock data, 
     calculate percentage changes, moving averages, and RSI (Relative Strength Index).
-    '''    
+    '''
 
     def __init__(self, name, load_period):
         self.name = name
-        # availiable periods: ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max']
         self.load_period = load_period
         self.analysis_periods = [7, 14, 30]
         self.rsi_window = [14, 21]

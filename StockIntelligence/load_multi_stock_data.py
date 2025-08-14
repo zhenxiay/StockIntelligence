@@ -11,10 +11,10 @@ from StockIntelligence.db_utility.logger import log_function
 from StockIntelligence.db_utility.big_query_setup import create_big_query_client_full_load, create_big_query_client_append
 
 class LoadMultiStockData():
-'''
-Create a loader with multiple stock data.
-This class is used to load multiple stock data into BigQuery or SQLite3.
-'''
+    '''
+    Create a loader with multiple stock data.
+    This class is used to load multiple stock data into BigQuery or SQLite3.
+    '''
     def __init__(self, stock_list, load_period, project, dataset):
         self.stock_list = stock_list
         self.load_period = load_period
