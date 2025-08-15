@@ -12,6 +12,7 @@ dependencies = [
     "pyarrow",
     "numpy<2",
     "yfinance==0.2.58",
+    "loguru",
     "curl_cffi",
     "google",
     "google-cloud",
