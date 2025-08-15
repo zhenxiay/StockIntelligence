@@ -7,4 +7,5 @@ load_object = LoadMultiStockData(stock_list,
                                  "keen-vial-420113", 
                                  "StockIntelligence")
 
-load_object.load_multi_stock_data_to_big_query('portfolio_analysis')
+load_object.load_multi_stock_data_to_big_query(
+                                  table_name='portfolio_analysis')
