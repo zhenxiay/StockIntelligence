@@ -4,7 +4,7 @@ from StockIntelligence.load_stock_data import LoadStockData
 def test_read_stock_data():
     dataset = GetStockData('MSFT', '3mo')
     columns_count = len(dataset.read_daily_data().columns)
-    assert columns_count == 15
+    assert columns_count == 16
 
 #Test that the an object can be created from the class load stock data
 def test_load_stock_data():
