@@ -5,7 +5,7 @@ Define class for getting and displaying stock data
 import yfinance as yf
 from curl_cffi import requests
 from StockIntelligence.abstract.stock_data_abstract import StockDataStructure
-from StockIntelligence.technical_analysis import calc_rsi
+from StockIntelligence.technical_analysis import calc_rsi, calc_williams_r
 
 class GetStockData(StockDataStructure):
     '''
@@ -56,6 +56,7 @@ class GetStockData(StockDataStructure):
                      .pipe(calc_pct_delta)
                      .pipe(calc_moving_avg)
                      .pipe(calc_rsi, rsi_window = self.rsi_window)
+                     .pipe(calc_williams_r)
                     )
 
         return df_output
