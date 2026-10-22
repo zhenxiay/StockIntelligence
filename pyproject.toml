@@ -19,10 +19,14 @@ dependencies = [
     "google-cloud-bigquery",
     "ta",
     "lxml",
+    "fastapi[standard]",
 ]
 
 [project.urls]
 Homepage = "https://github.com/zhenxiay/StockIntelligence"
+
+[project.scripts]
+api = "StockIntelligence.api:run_api"
 
 [build-system]
 requires = ["setuptools>=61.0"]
